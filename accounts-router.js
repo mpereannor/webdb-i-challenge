@@ -21,8 +21,10 @@ router.get('/', (req, res) => {
 
 //fetch data by id 
 router.get('/:id', async (req, res) => { 
-    // SELECT * FROM accounts 
-    //WHERE id = id 
+    
+    /*SELECT * FROM accounts 
+    WHERE id = id 
+    */
 
     try { 
         const result = await db('accounts')
@@ -37,8 +39,11 @@ router.get('/:id', async (req, res) => {
 
 //insert new data 
 router.post('/', async (req,res) => {
-    //INSERT INTO (ColumnA) 
-    //VALUES (dataA)
+
+    /*INSERT INTO (ColumnA) 
+    VALUES (dataA)
+    */
+
     try{ 
         const result = await db('accounts')
         .insert({
@@ -54,9 +59,12 @@ router.post('/', async (req,res) => {
 
 //update data 
 router.put('/:id', async (req, res) => {
-    //UPDATE accounts
-    //SET budget = new time', name = 'new name'
-  // WHERE id = an (id);
+
+    /*UPDATE accounts
+    SET budget = new time', name = 'new name'
+    WHERE id = an (id);
+    */
+
   db('accounts')
   .where({ id: req.params.id })
   .update({
@@ -73,6 +81,7 @@ router.put('/:id', async (req, res) => {
 
 //delete data 
 router.delete('/:id', async (req, res) => {
+    // DELETE FROM posts WHERE id = 1;
 
   db('accounts')
   .where( {
