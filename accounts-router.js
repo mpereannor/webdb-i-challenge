@@ -4,6 +4,8 @@ const db = require('./data/dbConfig');
 
 const router = express.Router();
 
+
+//fetch data
 router.get('/', (req, res) => {
     //SELECT * FROM accounts;
 
@@ -16,6 +18,33 @@ router.get('/', (req, res) => {
     });
 });
 
+//fetch data by id 
+// router.get('/:id', async (req, res) => {
+//     // SELECT * FROM posts WHERE id = id;
+//     try {
+//       const result = await db('posts').where({ id: req.params.id });
+//       res.json(result[0]);
+//     } catch (error) {
+//       res.status(500).json({ message: 'this went wrong: ' + error.message });
+//     }
+//   });
+
+
+
+router.get('/:id', async (req, res) => { 
+    // SELECT * FROM accounts 
+    //WHERE id = id 
+
+    try { 
+        const result = await db('accounts')
+        .where({id: req.params.id});
+        res.status(200).json(result[0]);
+    }
+    catch (error) { 
+    res.status(500).json({ message: 'this went wrong: ' + error.message });
+    }
+});
+//insert new data 
 router.post('/', async (req,res) => {
     //INSERT INTO (ColumnA) 
     //VALUES (dataA)
