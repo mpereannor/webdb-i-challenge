@@ -5,6 +5,36 @@
 - Relational Databases
 - Writing Basic SQL Queries
 - Writing Basic Queries using Knex.js
+select * from customers
+where customerid = 1;
+
+select * from customers
+where city = 'Berlin';
+
+select * from customers
+where city like  'B%';
+
+select * from customers
+where city like 'B%' and customerid < 10;
+
+select * from customers
+where city like 'B%' or customerid >= 10;
+
+select * from customers
+where city like 'B%' and customerid >= 10
+order by city desc;
+
+select * from customers
+where city like 'B%' and customerid >= 10
+order by city desc
+limit 5;
+
+insert into shippers (shippername, phone)
+values ('UPS', '(919) 234-1234');
+
+update shippers
+set phone = '1234567890', shippername = 'UPS unlimited'
+where shipperid = 4;
 
 ## Assignment
 
@@ -18,6 +48,7 @@ For this lab you will:
 Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top) using the **Google Chrome (or Chromium if you use Linux) browser** and write _SQL queries_ for the following requirements:
 
 - find all customers with postal code 1010. Returns 3 records.
+
 - find the phone number for the supplier with the id 11. Should be (010) 9984510.
 - list first 10 orders placed, sorted descending by the order date. The order with date 1997-02-12 should be at the top.
 - find all customers that live in London, Madrid, or Brazil. Returns 18 records.
