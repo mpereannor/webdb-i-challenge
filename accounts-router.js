@@ -16,4 +16,20 @@ router.get('/', (req, res) => {
     });
 });
 
+router.post('/', async (req,res) => {
+    //INSERT INTO (ColumnA) 
+    //VALUES (dataA)
+    try{ 
+        const result = await db('accounts')
+        .insert({
+            budget: req.body.budget,
+            name: req.body.name
+        })
+        res.json('New post got created with and id of ' + result[0]);
+    }
+    catch(error) { 
+        res.status(500).json({ message: 'this went wrong: ' + error.message });
+    }
+})
+
 module.exports = router;
