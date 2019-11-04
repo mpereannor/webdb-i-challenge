@@ -71,4 +71,30 @@ router.put('/:id', async (req, res) => {
   });
 })
 
+//delete data 
+router.delete('/:id', async (req, res) => {
+    // DELETE FROM posts WHERE id = 1;
+//   db('posts').where({ id: req.params.id }).del()
+//   .then(affectedRows => {
+//     res.json(affectedRows + ' rows got deleted!!');
+//   })
+//   .catch(error => {
+//     res.status(500).json('this went wrong: ' + error.message)
+//   })
+
+  //DELETE FROM accounts
+  //WHERE id = an (id)
+  db('accounts')
+  .where( {
+      id: req.params.id
+  })
+  .del()
+  .then(deletedBudget => {
+      res.json(deletedBudget + 'row got deleled!');
+  })
+  .catch(error => 
+    {
+    res.status(500).json('this went wrong: ' + error.message)
+    })
+})
 module.exports = router;
