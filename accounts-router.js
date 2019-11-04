@@ -18,19 +18,8 @@ router.get('/', (req, res) => {
     });
 });
 
+
 //fetch data by id 
-// router.get('/:id', async (req, res) => {
-//     // SELECT * FROM posts WHERE id = id;
-//     try {
-//       const result = await db('posts').where({ id: req.params.id });
-//       res.json(result[0]);
-//     } catch (error) {
-//       res.status(500).json({ message: 'this went wrong: ' + error.message });
-//     }
-//   });
-
-
-
 router.get('/:id', async (req, res) => { 
     // SELECT * FROM accounts 
     //WHERE id = id 
@@ -44,6 +33,8 @@ router.get('/:id', async (req, res) => {
     res.status(500).json({ message: 'this went wrong: ' + error.message });
     }
 });
+
+
 //insert new data 
 router.post('/', async (req,res) => {
     //INSERT INTO (ColumnA) 
@@ -59,6 +50,25 @@ router.post('/', async (req,res) => {
     catch(error) { 
         res.status(500).json({ message: 'this went wrong: ' + error.message });
     }
+});
+
+//update data 
+router.put('/:id', async (req, res) => {
+    //UPDATE accounts
+    //SET budget = new time', name = 'new name'
+  // WHERE id = an (id);
+  db('accounts')
+  .where({ id: req.params.id })
+  .update({
+    budget: req.body.budget,
+    name: req.body.name,
+  })
+  .then(updatedBudget => {
+    res.json(updatedBudget + ' records got changed!' );
+  })
+  .catch(error => {
+    res.status(500).json({ message: 'this went wrong: ' + error.message });
+  });
 })
 
 module.exports = router;
